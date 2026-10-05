@@ -5,8 +5,8 @@
 thread_local std::mt19937_64 rng{std::random_device{}()};
 std::uniform_int_distribution<size_t> dist(0, 19);
 
-const size_t kTableX = 400;
-const size_t kTableY = 400;
+const size_t kTableX = 1200;
+const size_t kTableY = 1200;
 
 void init_snake(Snake &snake) {
   snake.x = kTableX / 2;
