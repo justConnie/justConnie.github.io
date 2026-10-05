@@ -3,7 +3,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <emscripten.h>
 
-#include <string_view>
+#include <cmath>
 
 SDL_Window *window = nullptr;
 SDL_Renderer *renderer = nullptr;
@@ -29,6 +29,9 @@ void render_text(const char *message, int x, int y) {
   SDL_DestroyTexture(texture);
 }
 
+float start_x = 0.0f;
+float start_y = 0.0f;
+
 void main_loop() {
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
@@ -46,6 +49,32 @@ void main_loop() {
       case SDLK_RIGHT:
         change_direction(my_snake, 1, 0);
         break;
+      }
+    } else if (event.type == SDL_FINGERDOWN) {
+      start_x = event.tfinger.x;
+      start_y = event.tfinger.y;
+    } else if (event.type == SDL_FINGERUP &&
+               my_snake.state == GameState::Playing) {
+      float end_x = event.tfinger.x;
+      float end_y = event.tfinger.y;
+
+      float vec_x = end_x - start_x;
+      float vec_y = end_y - start_y;
+
+      if (!(abs(vec_x) < 0.1 && abs(vec_y) < 0.1)) {
+        if (abs(vec_x) > abs(vec_y)) {
+          if (vec_x > 0) {
+            change_direction(my_snake, 1, 0);
+          } else {
+            change_direction(my_snake, -1, 0);
+          }
+        } else {
+          if (vec_y > 0) {
+            change_direction(my_snake, 0, 1);
+          } else {
+            change_direction(my_snake, 0, -1);
+          }
+        }
       }
     }
   }
