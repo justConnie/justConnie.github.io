@@ -5,7 +5,7 @@
 
 #include <cmath>
 
-const size_t kTableX = 600;
+const size_t kTableX = 400;
 const size_t kTableY = 600;
 
 SDL_Window *window = nullptr;
