@@ -49,7 +49,11 @@ docker compose down
 ## Использованные источники
 
 При выполнении проектов и настройке запуска использовались:
+
 https://emscripten.org/index.html
+
 https://wiki.libsdl.org/SDL2/FrontPage
+
 @BotFather
+
 github copilot для написания конфигов докера, потому что я этого не знаю
