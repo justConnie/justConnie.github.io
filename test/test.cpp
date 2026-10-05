@@ -5,6 +5,9 @@
 
 #include <cmath>
 
+const size_t kTableX = 400;
+const size_t kTableY = 400;
+
 SDL_Window *window = nullptr;
 SDL_Renderer *renderer = nullptr;
 
@@ -116,7 +119,7 @@ int main() {
   TTF_Init();
   font = TTF_OpenFont("aboba.otf", 40);
 
-  SDL_CreateWindowAndRenderer(400, 400, 0, &window, &renderer);
+  SDL_CreateWindowAndRenderer(kTableX, kTableY, 0, &window, &renderer);
 
   init_snake(my_snake);
 

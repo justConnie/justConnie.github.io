@@ -5,9 +5,12 @@
 thread_local std::mt19937_64 rng{std::random_device{}()};
 std::uniform_int_distribution<size_t> dist(0, 19);
 
+const size_t kTableX = 400;
+const size_t kTableY = 400;
+
 void init_snake(Snake &snake) {
-  snake.x = 180;
-  snake.y = 180;
+  snake.x = kTableX / 2;
+  snake.y = kTableY / 2;
   snake.dx = 1;
   snake.dy = 0;
   snake.state = GameState::Playing;
@@ -37,13 +40,13 @@ void move_snake(Snake &snake, Apple &apple) {
   }
 
   if (snake.dx > 0) {
-    snake.x = snake.x + 20 <= 380 ? snake.x + 20 : 0;
+    snake.x = snake.x + 20 <= kTableX - 20 ? snake.x + 20 : 0;
   } else if (snake.dx < 0) {
-    snake.x = snake.x - 20 >= 0 ? snake.x - 20 : 380;
+    snake.x = snake.x - 20 >= 0 ? snake.x - 20 : kTableX - 20;
   } else if (snake.dy > 0) {
-    snake.y = snake.y + 20 <= 380 ? snake.y + 20 : 0;
+    snake.y = snake.y + 20 <= kTableY - 20 ? snake.y + 20 : 0;
   } else if (snake.dy < 0) {
-    snake.y = snake.y - 20 >= 0 ? snake.y - 20 : 380;
+    snake.y = snake.y - 20 >= 0 ? snake.y - 20 : kTableY - 20;
   }
   if (contains(snake.x, snake.y, snake.body)) {
     snake.state = GameState::Lost;
@@ -51,7 +54,7 @@ void move_snake(Snake &snake, Apple &apple) {
   }
   snake.body.push_back({snake.x, snake.y});
   if (snake.x == apple.x && snake.y == apple.y) {
-    if (snake.body.size() == 400) {
+    if (snake.body.size() == kTableX) {
       snake.state = GameState::Won;
       return;
     }
