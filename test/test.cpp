@@ -5,8 +5,8 @@
 
 #include <cmath>
 
-const size_t kTableX = 1200;
-const size_t kTableY = 1200;
+const size_t kTableX = 600;
+const size_t kTableY = 600;
 
 SDL_Window *window = nullptr;
 SDL_Renderer *renderer = nullptr;
