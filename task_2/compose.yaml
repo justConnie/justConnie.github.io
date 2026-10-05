@@ -1,0 +1,7 @@
+services:
+  bot:
+    build: .
+    container_name: snake-bot
+    restart: unless-stopped
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
