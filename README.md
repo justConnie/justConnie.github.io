@@ -46,7 +46,8 @@ docker compose up -d --build
 docker compose down
 ```
 
-##Доп информация
+## Доп информация
+
 папку test можно не трогать, там лежит сайт, с помощью которого работает Telegram mini-app. Основа сайта собрана на С++
 файл javascript написан не мной, а emscripten если что
 
